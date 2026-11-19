@@ -38,7 +38,14 @@ class Model:
             --> Ogni Escursione ha un set di PuntoInteresse.
             --> Ogni PuntoInteresse ha un set di Escursioni.
         """
-        # TODO
+        set_Relazioni = EscursioneDAO.get_escursioni_punti_interesse()
+        for coppia in set_Relazioni:
+            esc = self.escursioni_map[coppia["id_escursione"]]
+            punti = self.punti_interesse_map[esc["id_punto_interesse"]]
+            esc.punti_interesse.add(punti)
+            punti.escursioni.add(esc)
+
+
 
     def genera_pacchetto(self, id_parco: str, max_giorni: int = None, max_budget: float = None):
         """

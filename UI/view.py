@@ -7,8 +7,11 @@ class View:
         # Page
         self.page = page
         self.page.title = "Lab09"
-        self.page.horizontal_alignment = "center"
+        #self.page.horizontal_alignment = "center"
         self.page.theme_mode = ft.ThemeMode.DARK
+        self.page.window.width=1200
+        #self.page.window.maximized = True
+
 
         # Alert
         self.alert = AlertManager(page)
