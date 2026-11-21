@@ -107,7 +107,7 @@ class Model:
                              punti_usati)
 
             pacchetto_parziale.pop()
-            punti_usati.discard(e.punti_interesse)
+            punti_usati.difference_update(e.punti_interesse)
 
 
 
