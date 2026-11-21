@@ -32,28 +32,30 @@ class Controller:
         self._view.update()
 
     def check_giorni(self, e):
-        """Controlla che il formato sia corretto per durata in giorni"""
         try:
             self._view.durata_massima.error = None
             if e.control.value == "":
                 self.durata = None
             else:
-                self.durata = int(e.control.value)
+                valore = int(e.control.value)
+                if valore < 0:
+                    raise ValueError("Giorni negativi")
+                self.durata = valore
         except Exception:
             self.durata = None
             self._view.durata_massima.error = "Giorni non Validi"
         self._view.update()
 
     def check_budget(self, e):
-        """Controlla che il formato sia corretto per budget in euro"""
         try:
             self._view.budget_massimo.error = None
             if e.control.value == "":
                 self.costo = None
             else:
-                e.control.value = e.control.value.replace(".", "")
-                self.costo = float(e.control.value.replace(",", "."))
-                print(self.costo)
+                valore = float(e.control.value.replace(".", "").replace(",", "."))
+                if valore < 0:
+                    raise ValueError("Budget negativo")
+                self.costo = valore
         except Exception:
             self.costo = None
             self._view.budget_massimo.error = "Budget non valido"
